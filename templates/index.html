@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Monitor MQTT ESP</title>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        max-width: 600px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      input {
+        padding: 8px;
+        width: 200px;
+      }
+
+      button {
+        padding: 8px 14px;
+        cursor: pointer;
+      }
+
+      #log {
+        margin-top: 20px;
+        height: 300px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background: #fafafa;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Monitor de Dispositivo ESP</h2>
+
+      <p>Escolha qual cliente deseja escutar:</p>
+
+      <input id="device" placeholder="ex: esp01" />
+      <button onclick="escutar()">Escutar</button>
+
+      <div id="log"></div>
+    </div>
+
+    <script>
+      const socket = io("http://localhost:5000");
+
+      function log(msg) {
+        const logDiv = document.getElementById("log");
+
+        const line = document.createElement("div");
+        line.textContent = msg;
+
+        logDiv.appendChild(line);
+        logDiv.scrollTop = logDiv.scrollHeight;
+      }
+
+      socket.on("connect", () => {
+        log("Conectado ao servidor");
+      });
+
+      function escutar() {
+        const device = document.getElementById("device").value;
+
+        socket.emit("listen_device", {
+          device: device,
+        });
+
+        log("Escutando dispositivo: " + device);
+      }
+
+      socket.on("esp_data", (data) => {
+        log(JSON.stringify(data));
+      });
+    </script>
+  </body>
+</html>
