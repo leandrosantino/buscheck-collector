@@ -38,3 +38,7 @@ Obter a branch atual do repositório
 git push origin <nome_da_branch_atual>
 ```
 Realizar o push para o repositorio remoto.
+
+# Regas
+
+- Escreva os commits apenas em português.

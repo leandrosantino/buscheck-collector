@@ -43,10 +43,10 @@ def on_message(client, userdata, msg):
 
     try:
         response = (
-            supabase.table("record")
+            supabase.table("check_in")
             .insert({
-                "unit_code": device_id,
-                "card_code": payload,
+                "codigo_veiculo": device_id,
+                "codigo_cartao": payload,
             })
             .execute()
         )
