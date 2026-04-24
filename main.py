@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import paho.mqtt.client as mqtt
 import json
 import paho.mqtt.client as mqtt
-from flask import Flask, render_template
+from flask import Flask
 from supabase import create_client, Client
 
 load_dotenv()
@@ -59,4 +59,4 @@ mqtt_client.loop_start()
 
 if __name__ == "__main__":
     print("Servidor iniciado")
-    socketio.run(app, host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
