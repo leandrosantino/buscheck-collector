@@ -11,10 +11,6 @@ const char* ssid = "BOOK4 9090";
 const char* password = "frd4aws2";
 const char* mqtt_server = "137.131.151.245";
 
-// const char* ssid = "Click.com";
-// const char* password = "comum104";
-// const char* mqtt_server = "10.0.0.105";
-
 WiFiClient espClient;
 PubSubClient client(espClient);
 

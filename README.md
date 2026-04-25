@@ -16,23 +16,25 @@ O projeto será desenvolvido por uma equipe de 5 pessoas.
 
 ![Diagrama de Arquitetura](docs/BusCheck.jpg)
 
+## Esquema Elétrico
+
+![Diagrama de Arquitetura](docs/RFID-collector.jpg)
+
 ## Requisitos Funcionais
 
 ### RF01 - Leitura de Tags RFID
-- O sistema deve ser capaz de ler tags RFID compatíveis com o módulo MFRC522
+- O sistema deve ser capaz de ler tags RFID compatíveis com o módulo RFID-RC522
 - Cada leitura deve capturar o UID único da tag
 - O sistema deve registrar o timestamp da leitura com precisão de segundos
 
 ### RF02 - Comunicação Wi-Fi
 - O módulo ESP8266 deve conectar-se a redes Wi-Fi configuradas
 - Deve suportar reconexão automática em caso de perda de conexão
-- Deve validar credenciais de rede antes de tentar conexão
 
 ### RF03 - Publicação MQTT
 - O sistema deve publicar leituras RFID no tópico `sensor/<codigo-do-veiculo>/rfid`
 - Cada mensagem deve conter:
   - UID da tag RFID
-  - Timestamp da leitura
   - Código do veículo
 
 ### RF04 - Processamento de Leituras (Worker Python)
@@ -42,8 +44,6 @@ O projeto será desenvolvido por uma equipe de 5 pessoas.
 
 ### RF05 - Feedback Sonoro
 - O sistema deve emitir um sinal sonoro via buzzer após leitura bem-sucedida
-- Deve emitir um sinal sonoro diferente para leituras com falha
-
 
 ## Etapas do Projeto
 
@@ -70,9 +70,9 @@ O projeto será desenvolvido por uma equipe de 5 pessoas.
 
 ## Tecnologias Utilizadas
 
-- **Hardware**: ESP8266, Módulo RFID MFRC522, Buzzer passivo
-- **Firmware**: PlatformIO/Arduino Framework (C++)
-- **Comunicação**: Wi-Fi 802.11 b/g/n, Protocolo MQTT
+- **Hardware**: ESP8266, Módulo RFID RFID-RC522, Buzzer passivo
+- **Firmware**: Arduino Framework (C++)
+- **Comunicação**: Wi-Fi, Protocolo MQTT
 - **Backend**: Python 3.x, Biblioteca Paho MQTT
-- **Banco de Dados**: PostgreSQL (integrado ao sistema BusCheck)
-- **Broker MQTT**: Mosquitto ou similar
+- **Banco de Dados**: PostgreSQL (Supabase)
+- **Broker MQTT**: Mosquitto
