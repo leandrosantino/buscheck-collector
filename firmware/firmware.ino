@@ -7,7 +7,7 @@
 #define RST_PIN D0
 #define BUZZER_PIN D4
 
-const char* ssid = "BOOK4 9090";
+const char* ssid = "Mobile_AP";
 const char* password = "frd4aws2";
 const char* mqtt_server = "137.131.151.245";
 
