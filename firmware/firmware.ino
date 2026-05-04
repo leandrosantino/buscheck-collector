@@ -6,6 +6,8 @@
 #define SS_PIN D8
 #define RST_PIN D0
 #define BUZZER_PIN D4
+#define LED_ON_PIN D2
+#define LED_READ_PIN D3
 
 const char* ssid = "Mobile_AP";
 const char* password = "frd4aws2";
@@ -18,9 +20,12 @@ MFRC522 rfid(SS_PIN, RST_PIN);
 
 // -------- BUZZER --------
 void beep() {
-  tone(BUZZER_PIN, 950); // 2kHz
+  tone(BUZZER_PIN, 950);
+  digitalWrite(LED_READ_PIN, HIGH); // 2kHz
   delay(200);            // duração do beep
   noTone(BUZZER_PIN);
+  delay(200); 
+  digitalWrite(LED_READ_PIN, LOW);
 }
 
 // ------------------------
@@ -31,10 +36,14 @@ void conectarWifi() {
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(250);
+    digitalWrite(LED_ON_PIN, HIGH);
     Serial.print(".");
+    delay(250);
+    digitalWrite(LED_ON_PIN, LOW);
   }
 
+  digitalWrite(LED_ON_PIN, HIGH);
   Serial.println("\nWiFi conectado!");
   Serial.print("IP: ");
   Serial.println(WiFi.localIP());
@@ -65,6 +74,8 @@ void setup() {
   Serial.begin(9600);
 
   pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(LED_ON_PIN, OUTPUT);
+  pinMode(LED_READ_PIN, OUTPUT);
 
   conectarWifi();
 
