@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "paho-mqtt>=2.1.0",
+    "pyinstaller>=6.20.0",
     "python-dotenv>=1.2.2",
     "supabase>=2.28.3",
 ]
