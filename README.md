@@ -14,11 +14,11 @@ O projeto será desenvolvido por uma equipe de 5 pessoas.
 
 ## Arquitetura do Sistema
 
-![Diagrama de Arquitetura](docs/BusCheck.jpg)
+![Diagrama de Arquitetura](docs/image/BusCheck.jpg)
 
 ## Esquema Elétrico
 
-![Diagrama de Arquitetura](docs/RFID-collector.jpg)
+![Diagrama de Arquitetura](docs/image/RFID-collector.jpg)
 
 ## Requisitos Funcionais
 
